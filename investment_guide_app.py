@@ -23,7 +23,8 @@ def load_opportunities():
     conn = get_connection()
     cur = conn.cursor(cursor_factory=RealDictCursor)
     cur.execute("""
-        SELECT o.title, r.name AS region, s.name AS sector, o.investment_value_usd, o.expected_roi_percent, o.status
+        SELECT 'Ethiopia' as country, 
+        o.title, r.name AS region, s.name AS sector, o.investment_value_usd, o.expected_roi_percent, o.status
         FROM opportunity o
         JOIN region r ON o.region_id = r.region_id
         JOIN sector s ON o.sector_id = s.sector_id
