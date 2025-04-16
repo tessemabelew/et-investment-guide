@@ -46,7 +46,7 @@ def add_opportunity(title, region_id, sector_id, type_id, value, roi, status, pe
     conn.close()
 
 # UI Layout
-st.title("Investment Guide - XYZ Region")
+st.title("Investment Guide - ETHIOPIA")
 
 st.subheader("Available Investment Opportunities")
 
