@@ -54,7 +54,7 @@ st.subheader("Available Investment Opportunities")
 df = load_opportunities()
 st.dataframe(df)
 
-st.subheader("➕ Add New Investment Opportunity")
+st.subheader("Add New Investment Opportunity")
 
 # Form to add new opportunity
 with st.form("add_opportunity_form"):
@@ -71,6 +71,6 @@ with st.form("add_opportunity_form"):
     submitted = st.form_submit_button("Add Opportunity")
     if submitted:
         add_opportunity(title, region_id, sector_id, type_id, value, roi, status, person, email)
-        st.success("✅ Opportunity added successfully!")
+        st.success("Opportunity added successfully!")
 
 
