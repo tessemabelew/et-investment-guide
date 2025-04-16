@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from urllib.parse import urlparse
 
 # PostgreSQL Connection Function
 def get_connection():
