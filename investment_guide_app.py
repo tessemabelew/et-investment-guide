@@ -4,13 +4,18 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from urllib.parse import urlparse
 
-# PostgreSQL Connection Function
+# Parse connection URL
+db_url = "postgresql://neondb_owner:npg_HUSbFkMhX27f@ep-delicate-credit-a41vg9rt-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+result = urlparse(db_url)
+
 def get_connection():
     return psycopg2.connect(
-        host="localhost",
-        database="investment_guide",
-        user="postgres",
-        password="Saba123@"
+        dbname=result.path[1:],  # remove leading slash
+        user=result.username,
+        password=result.password,
+        host=result.hostname,
+        port=result.port,
+        sslmode="require"
     )
 
 # Load Opportunities from DB
