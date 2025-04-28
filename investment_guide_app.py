@@ -24,7 +24,7 @@ def load_opportunities():
     cur = conn.cursor(cursor_factory=RealDictCursor)
     cur.execute("""
         SELECT 'Ethiopia' as country, 
-        o.title, r.name AS region, s.name AS sector, o.investment_value_usd, o.expected_roi_percent, o.status
+        o.title, r.name AS region, s.name AS sector, o.investment_value_usd, o.expected_roi_percent, o.status, r.description
         FROM opportunity o
         JOIN region r ON o.region_id = r.region_id
         JOIN sector s ON o.sector_id = s.sector_id
@@ -74,4 +74,12 @@ with st.form("add_opportunity_form"):
         add_opportunity(title, region_id, sector_id, type_id, value, roi, status, person, email)
         st.success("Opportunity added successfully!")
 
+try:
+    cur.execute("""
+        INSERT INTO opportunity 
+        (title, region_id, sector_id, type_id, investment_value_usd, expected_roi_percent, status, contact_person, contact_email)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """, (title, region_id, sector_id, type_id, value, roi, status, person, email))
+except Exception as e:
+    st.error(f"Failed to insert: {e}")
 
